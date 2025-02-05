@@ -93,41 +93,115 @@ void	add_node_list(t_stack **head, int value)
 	(*head)->prev = new_node;
 }
 
-void	display_list(t_stack *head)
+void display_list(t_stack *head)
 {
-	t_stack	*tmp;
-	int		i;
+    if (!head)
+    {
+        ft_printf(RED "Liste vide\n" RESET);
+        return;
+    }
 
-	tmp = head;
-	i = 1;
-	while (tmp->next != head)
-	{
-		printf("NODE %d\n   |\n   v\n  [%d]\n", i, tmp->content);
-		printf("   |\n   v\n");
-		i++;
-		tmp = tmp->next;
-	}
-	printf("NODE %d\n   |\n   v\n  [%d]\n", i, tmp->content);
-	tmp = tmp->next;
-	printf("   |\n   v\n");
-	printf("NODE 1\n   |\n   v\n  [%d]\n", tmp->content);
+    t_stack *tmp = head;
+    int i = 1;
+    int total_nodes = 1;
+
+    // Compter le nombre total de nœuds
+    while (tmp->next != head)
+    {
+        total_nodes++;
+        tmp = tmp->next;
+    }
+
+    ft_printf(YELLOW "┌─────────────────────────────────────────┐\n" RESET);
+    ft_printf(YELLOW "│      Liste Chaînée Circulaire (%d)       │\n" RESET, total_nodes);
+    ft_printf(YELLOW "└─────────────────────────────────────────┘\n" RESET);
+
+    tmp = head;
+    while (1)
+    {
+        ft_printf(CYAN "   ┌────────────┐\n" RESET);
+        ft_printf(CYAN "   │ " GREEN "NODE %d" CYAN "\t│\n" RESET, i);
+        ft_printf(CYAN "   └───┬────────┘\n" RESET);
+        ft_printf(MAGENTA "       │\n" RESET);
+        ft_printf(MAGENTA "       ▼\n" RESET);
+        ft_printf(BLUE "    ┌───────────┐\n" RESET);
+        ft_printf(BLUE "    │ " RED "%d" BLUE "\t│\n" RESET, tmp->content);
+        ft_printf(BLUE "    └───────────┘\n" RESET);
+
+        if (i < total_nodes)
+        {
+            ft_printf(MAGENTA "       │\n" RESET);
+            ft_printf(MAGENTA "       ▼\n" RESET);
+        }
+
+        if (tmp->next == head)
+            break;
+
+        i++;
+        tmp = tmp->next;
+    }
+
+    ft_printf(MAGENTA "       │\n" RESET);
+    ft_printf(MAGENTA "       └──┐\n" RESET);
+    ft_printf(MAGENTA "          │\n" RESET);
+    ft_printf(MAGENTA "          ▼\n" RESET);
+    ft_printf(CYAN "   ┌────────────┐\n" RESET);
+    ft_printf(CYAN "   │ " GREEN "NODE 1" CYAN "\t│\n" RESET);
+    ft_printf(CYAN "   └────────────┘\n" RESET);
+    ft_printf(CYAN "(retour au début)\n\n" RESET);
 }
 
-int	main(void)
-{
-	t_stack	*a;
-	t_stack *b;
+// void	display_list(t_stack *head)
+// {
+// 	t_stack	*tmp;
+// 	int		i;
 
-	a = NULL;
-	add_node_list(&a, 1);
-	add_node_list(&a, 2);
-	add_node_list(&a, 3);
-	add_node_list(&a, 4);
-	add_node_list(&a, 5);
-	add_node_list(&a, 6);
-	add_node_list(&a, 7);
-	add_node_list(&a, 8);
-	add_node_list(&a, 9);
-	display_list(a);
-	return (0);
+// 	tmp = head;
+// 	i = 1;
+// 	while (tmp->next != head)
+// 	{
+// 		ft_printf("NODE %d\n   |\n   v\n  [%d]\n", i, tmp->content);
+// 		ft_printf("   |\n   v\n");
+// 		i++;
+// 		tmp = tmp->next;
+// 	}
+// 	ft_printf("NODE %d\n   |\n   v\n  [%d]\n", i, tmp->content);
+// 	tmp = tmp->next;
+// 	ft_printf("   |\n   v\n");
+// 	ft_printf("NODE 1\n   |\n   v\n  [%d]\n", tmp->content);
+// }
+
+int main(void)
+{
+    t_stack *a = NULL;
+    t_stack *b = NULL;
+
+    add_node_list(&a, 1);
+    add_node_list(&a, 2);
+
+    add_node_list(&b, 1);
+    add_node_list(&b, 2);
+
+    // ft_printf("\nAvant swap_a:\n");
+    // display_list(a);
+    // swap_a(&a);
+    // ft_printf("\nAprès swap_a:\n");
+    // display_list(a);
+
+    // ft_printf("\nAvant swap_b:\n");
+    // display_list(b);
+    // swap_b(&b);
+    // ft_printf("\nAprès swap_b:\n");
+    // display_list(b);
+
+	ft_printf("\nAvant swap_ab:\n");
+    display_list(a);
+	display_list(b);
+    swap_ab(&a, &b);
+    ft_printf("\nAprès swap_ab:\n");
+    display_list(a);
+    display_list(b);
+
+    return (0);
 }
+
