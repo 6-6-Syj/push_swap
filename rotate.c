@@ -12,19 +12,30 @@
 
 #include "push_swap.h"
 
-void	rotate_a(a)
-{
 /*	Décale d’une position vers le haut tous les élements de la pile a.
 	Le premier élément devient le dernier.  */
+int	rotate_a(t_stack **a)
+{
+	if (!(*a) || (*a)->next == *a)
+		return (0);
+	*a = (*a)->next;
+	return (1);
 }
 
-void	rotate_b(b)
-{
 /*	Décale d’une position vers le haut tous les élements de la pile b.
 	Le premier élément devient le dernier.  */
+int	rotate_b(t_stack **b)
+{
+	if (!(*b) || (*b)->next == *b)
+		return (0);
+	*b = (*b)->next;
+	return (1);
 }
 
-void	rotate_ab(a, b)
-{
 /*	ra et rb en même temps. */
+int	rotate_ab(t_stack **a, t_stack **b)
+{
+	rotate_a(a);
+	rotate_b(b);
+	return (1);
 }

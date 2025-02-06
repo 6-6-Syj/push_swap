@@ -18,8 +18,13 @@ HEADER = $(LIBFT_DIR)libft.h
 CC = cc
 FLAGS = -Wall -Werror -Wextra
 
-SRCS =	push.c			\
-		swap.c			\
+SRCS =	main.c				\
+		nodes.c				\
+		debug.c				\
+		push.c				\
+		swap.c				\
+		rotate.c			\
+		reverse_rotate.c	\
 
 OBJS_DIR = obj/
 OBJS = $(SRCS:%.c=$(OBJS_DIR)%.o)

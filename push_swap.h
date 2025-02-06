@@ -32,9 +32,30 @@ typedef struct s_stack
 }	t_stack;
 
 
+//	nodes.c
+t_stack	*add_new_node(int value);
+void	add_node_list(t_stack **head, int value);
+
+// debug.c
+int 	display_list(t_stack *head);
+
 //	swap.c
 int		swap_a(t_stack **a);
 int		swap_b(t_stack **b);
-void	swap_ab(t_stack **a, t_stack **b);
+int		swap_ab(t_stack **a, t_stack **b);
+
+// push.c
+int		push_a(t_stack **a, t_stack **b);
+int		push_b(t_stack **a, t_stack **b);
+
+// rotate.c
+int		rotate_a(t_stack **a);
+int		rotate_b(t_stack **b);
+int		rotate_ab(t_stack **a, t_stack **b);
+
+// reverse_rotate.c
+int		reverse_rotate_a(t_stack **a);
+int		reverse_rotate_b(t_stack **b);
+int		reverse_rotate_ab(t_stack **a, t_stack **b);
 
 #endif

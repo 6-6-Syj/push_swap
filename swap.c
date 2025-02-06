@@ -74,8 +74,9 @@ int swap_b(t_stack **b)
 }
 
 /*	sa et sb en même temps. */
-void	swap_ab(t_stack **a, t_stack **b)
+int	swap_ab(t_stack **a, t_stack **b)
 {
 	swap_a(a);
 	swap_b(b);
+	return (1);
 }
