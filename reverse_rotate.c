@@ -12,8 +12,9 @@
 
 #include "push_swap.h"
 
-/*	Décale d’une position vers le bas tous les élements de la pile a.
+/*	Décale d’une position vers le bas tous les élements de la pile.
 	Le dernier élément devient le premier. */
+
 int	reverse_rotate_a(t_stack **a)
 {
 	if (!(*a) || (*a)->next == *a)
@@ -22,8 +23,6 @@ int	reverse_rotate_a(t_stack **a)
 	return (1);
 }
 
-/*	Décale d’une position vers le bas tous les élements de la pile b.
-	Le dernier élément devient le premier. */
 int	reverse_rotate_b(t_stack **b)
 {
 	if (!(*b) || (*b)->next == *b)
@@ -32,7 +31,6 @@ int	reverse_rotate_b(t_stack **b)
 	return (1);
 }
 
-/*	rra et rrb en même temps. */
 int	reverse_rotate_ab(t_stack **a, t_stack **b)
 {
 	reverse_rotate_a(a);

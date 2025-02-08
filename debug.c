@@ -44,7 +44,7 @@ static void display_node(t_stack *tmp, int i)
 	ft_printf(MAGENTA "       │\n" RESET);
 	ft_printf(MAGENTA "       ▼\n" RESET);
 	ft_printf(BLUE "    ┌───────────┐\n" RESET);
-	ft_printf(BLUE "    │ " RED "%d" BLUE "\t│\n" RESET, tmp->content);
+	ft_printf(BLUE "    │ " RED "%d" BLUE "\t│\n" RESET, tmp->value);
 	ft_printf(BLUE "    └───────────┘\n" RESET);
 }
 

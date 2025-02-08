@@ -13,7 +13,6 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stdlib.h>
 # include "libft/libft.h"
 
 #define RESET   "\033[0m"
@@ -28,9 +27,8 @@ typedef struct s_stack
 {
 	struct s_stack	*prev;
 	struct s_stack	*next;
-	int				content;
+	int				value;
 }	t_stack;
-
 
 //	nodes.c
 t_stack	*add_new_node(int value);
@@ -57,5 +55,10 @@ int		rotate_ab(t_stack **a, t_stack **b);
 int		reverse_rotate_a(t_stack **a);
 int		reverse_rotate_b(t_stack **b);
 int		reverse_rotate_ab(t_stack **a, t_stack **b);
+
+// value_to_index.c
+int		*modify_value(int *arr, size_t len);
+
+//
 
 #endif

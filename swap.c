@@ -12,9 +12,9 @@
 
 #include "push_swap.h"
 
-
-/* 	Intervertit les 2 premiers éléments au sommet de la pile a.
+/* 	Intervertit les 2 premiers éléments au sommet de la pile.
 	Ne fait rien s’il n’y en a qu’un ou aucun */
+
 int swap_a(t_stack **a)
 {
     t_stack *first;
@@ -43,8 +43,6 @@ int swap_a(t_stack **a)
     return (1);
 }
 
-/*	Intervertit les 2 premiers éléments au sommet de la pile b.
-	Ne fait rien s’il n’y en a qu’un ou aucun. */
 int swap_b(t_stack **b)
 {
     t_stack *first;
@@ -73,7 +71,6 @@ int swap_b(t_stack **b)
     return (1);
 }
 
-/*	sa et sb en même temps. */
 int	swap_ab(t_stack **a, t_stack **b)
 {
 	swap_a(a);

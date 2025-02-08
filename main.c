@@ -12,10 +12,44 @@
 
 #include "push_swap.h"
 
-int main(void)
+static void free_stack(t_stack **stack)
 {
-    t_stack *a = NULL;
-    t_stack *b = NULL;
+	t_stack	*start;
+	t_stack	*current;
+	t_stack	*next;
+
+	if (!stack || !*stack)
+		return;
+	start = *stack;
+	current = *stack;
+	while (current)
+	{
+		next = current->next;
+		free(current);
+		if (next == start)
+			break;
+		current = next;
+	}
+	*stack = NULL;
+}
+
+int main(int ac, char **av)
+{
+	t_stack *a;
+	t_stack *b;
+	int		len;
+
+	a = NULL;
+	b = NULL;
+	if (ac < 2)
+	{
+		ft_printf(RED"Error: Need arg\n"RESET);
+	}
+	len = 0;
+	while (av[len])
+		len++;
+
+
 
     add_node_list(&a, 1);
     add_node_list(&a, 2);
@@ -105,13 +139,16 @@ int main(void)
 			// display_list(b);
 
 					/* REVERSE_ROTATE_AB */
-					ft_printf("\nAvant reverse_rotate_ab:\n");
-					display_list(a);
-					display_list(b);
-					reverse_rotate_a(&a);
-					ft_printf("\nAprès reverse_rotate_ab:\n");
-					display_list(a);
-					display_list(b);
+					// ft_printf("\nAvant reverse_rotate_ab:\n");
+					// display_list(a);
+					// display_list(b);
+					// reverse_rotate_ab(&a, &b);
+					// ft_printf("\nAprès reverse_rotate_ab:\n");
+					// display_list(a);
+					// display_list(b);
 
-    return (0);
+	free_stack(&a);
+	free_stack(&b);
+	return (0);
+
 }

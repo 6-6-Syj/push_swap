@@ -1,14 +1,3 @@
-COLOR_BLACK = \033[30m
-COLOR_RED = \033[31m
-COLOR_GREEN = \033[32m
-COLOR_YELLOW = \033[33m
-COLOR_BLUE = \033[34m
-COLOR_MAGENTA = \033[35m
-COLOR_CYAN = \033[36m
-COLOR_WHITE = \033[37m
-COLOR_BOLD = \033[1m
-COLOR_RESET = \033[0m
-
 NAME = push_swap
 
 LIBFT_DIR = libft/
@@ -25,30 +14,60 @@ SRCS =	main.c				\
 		swap.c				\
 		rotate.c			\
 		reverse_rotate.c	\
+		value_to_index.c	\
 
 OBJS_DIR = obj/
 OBJS = $(SRCS:%.c=$(OBJS_DIR)%.o)
 
+.PHONY: all
 all: $(NAME)
 
-$(OBJS_DIR)%.o: %.c $(HEADER) Makefile
+$(LIBFT_NAME): FORCE
+	@$(MAKE) -C $(LIBFT_DIR) --no-print-directory
+
+$(NAME): Makefile $(OBJS) $(LIBFT_NAME)
+	@$(MAKE) -C $(LIBFT_DIR) --no-print-directory
+	@$(CC) $(FLAGS) $(OBJS) -L$(LIBFT_DIR) $(LIBFT_NAME) -o $(NAME)
+	@echo "$(GREEN)$(BOLD)\n🎉 Compilation successful!$(RESET)"
+	@echo "$(CYAN)  └─ Ready to run: ./$(NAME)\n$(RESET)"
+
+$(OBJS_DIR)%.o: %.c $(HEADER) Makefile $(LIBFT_NAME)
 	@mkdir -p $(OBJS_DIR)
+	@echo "$(MAGENTA)$(BOLD)[Compiling...]$(RESET) $<"
 	@$(CC) $(FLAGS) -c $< -o $@
 
-$(NAME): $(OBJS)
-	@make -C $(LIBFT_DIR)
-	$(CC) $(FLAGS) $(OBJS) -L$(LIBFT_DIR) $(LIBFT_NAME) -o $(NAME)
-	@echo "\n✅$(COLOR_BOLD)$(COLOR_GREEN) $(LIBFT_NAME) ✅\n✅ ./$(NAME) has been created$(COLOR_RESET) ✅\n"
-
-clean :
+.PHONY: clean
+clean:
 	@rm -rf $(OBJS_DIR) $(OBJS)
-	@make clean -C $(LIBFT_DIR)
+	@$(MAKE) clean -C $(LIBFT_DIR)
+	@echo "$(RED)$(BOLD)\n🧹 Cleaning up project files...$(RESET)"
+	@echo "$(YELLOW)  ├─ Removing object files$(RESET)"
+	@echo "$(YELLOW)  └─ Cleaning libft$(RESET)"
 
-fclean : clean
-	@rm -f $(LIBFT_NAME)
+.PHONY: fclean
+fclean: clean
+	@$(MAKE) fclean -C $(LIBFT_DIR) --no-print-directory
 	@$(RM) $(NAME)
-	@echo "\n❌$(COLOR_BOLD)$(COLOR_RED) $(LIBFT_NAME) ❌\n❌ ./$(NAME) have been deleted$(COLOR_RESET) ❌\n"
+	@echo "$(RED)$(BOLD)\n🗑️  Full clean-up completed:$(RESET)"
+	@echo "$(YELLOW)  ├─ Removed object files and directories$(RESET)"
+	@echo "$(YELLOW)  ├─ Cleaned libft$(RESET)"
+	@echo "$(YELLOW)  └─ Deleted executable: $(NAME)$(RESET)"
+	@echo "$(GREEN)$(BOLD)\n🌿 Back to its original state!$(RESET)\n"
 
-re : fclean all
+.PHONY: re
+re: fclean all
 
-.PHONY : clean fclean re name
+.PHONY: FORCE
+FORCE:
+
+# ************************* COLORS ************************* #
+BLACK = \033[30m
+RED = \033[31m
+GREEN = \033[32m
+YELLOW = \033[33m
+BLUE = \033[34m
+MAGENTA = \033[35m
+CYAN = \033[36m
+WHITE = \033[37m
+BOLD = \033[1m
+RESET = \033[0m

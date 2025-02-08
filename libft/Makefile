@@ -1,14 +1,13 @@
-COLOR_BLACK = \033[30m
-COLOR_RED = \033[31m
-COLOR_GREEN = \033[32m
-COLOR_YELLOW = \033[33m
-COLOR_BLUE = \033[34m
-COLOR_MAGENTA = \033[35m
-COLOR_CYAN = \033[36m
-COLOR_WHITE = \033[37m
-
-COLOR_BOLD = \033[1m
-COLOR_RESET = \033[0m
+BLACK = \033[30m
+RED = \033[31m
+GREEN = \033[32m
+YELLOW = \033[33m
+BLUE = \033[34m
+MAGENTA = \033[35m
+CYAN = \033[36m
+WHITE = \033[37m
+BOLD = \033[1m
+RESET = \033[0m
 
 NAME = libft.a
 
@@ -64,22 +63,27 @@ ARFLAGS = -r -c -s
 OBJS_DIR = obj/
 OBJS = $(SRCS:%.c=$(OBJS_DIR)%.o)
 
+.PHONY: all
+all: $(NAME)
+
+$(NAME): $(OBJS) Makefile
+	@$(AR) $(ARFLAGS) $(NAME) $(OBJS)
+	@echo "$(GREEN)$(BOLD)\n📚 Library created successfully!$(RESET)"
+	@echo "$(CYAN)  ├─ Library name: $(NAME)$(RESET)"
+	@echo "$(CYAN)  └─ Total objects: $(words $(OBJS))\n$(RESET)"
 
 $(OBJS_DIR)%.o: %.c $(HEADER) Makefile
 	@mkdir -p $(OBJS_DIR)
+	@echo "$(MAGENTA)$(BOLD)[Compiling...]$(RESET) $<"
 	@$(CC) $(FLAGS) -c $< -o $@
 
-all : $(NAME)
-
-$(NAME): $(OBJS)
-	@$(AR) $(ARFLAGS) $(NAME) $(OBJS)
-
-clean :
+.PHONY: clean
+clean:
 	@$(RM) -r $(OBJS_DIR) $(OBJS)
 
-fclean : clean
+.PHONY: fclean
+fclean: clean
 	@$(RM) $(NAME)
 
-re : fclean all
-
-.PHONY : clean fclean re name
+.PHONY: re
+re: fclean all

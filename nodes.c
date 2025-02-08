@@ -19,7 +19,7 @@ t_stack	*add_new_node(int value)
 	tmp = malloc(sizeof(t_stack));
 	if (!tmp)
 		return (NULL);
-	tmp->content = value;
+	tmp->value = value;
 	tmp->prev = NULL;
 	tmp->next = NULL;
 	return (tmp);

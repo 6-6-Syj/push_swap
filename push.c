@@ -10,8 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "push_swap.h"
+
+/* 	Prend le premier élément au sommet de b et le met sur a.
+	Ne fait rien si b est vide. */
 
 static void	push_to_a(t_stack **a, t_stack *tmp_b)
 {
@@ -49,8 +51,6 @@ static void	push_to_b(t_stack **b, t_stack *tmp_a)
 	}
 }
 
-/* 	Prend le premier élément au sommet de b et le met sur a.
-	Ne fait rien si b est vide. */
 int		push_a(t_stack **a, t_stack **b)
 {
 	t_stack	*tmp_b;
@@ -70,8 +70,6 @@ int		push_a(t_stack **a, t_stack **b)
 	return (1);
 }
 
-/* 	Prend le premier élément au sommet de a et le met sur b.
-	Ne fait rien si a est vide. */
 int		push_b(t_stack **a, t_stack **b)
 {
 	t_stack	*tmp_a;
