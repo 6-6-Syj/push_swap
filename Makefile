@@ -15,6 +15,8 @@ SRCS =	main.c				\
 		rotate.c			\
 		reverse_rotate.c	\
 		value_to_index.c	\
+		args.c				\
+		args_utils.c		\
 
 OBJS_DIR = obj/
 OBJS = $(SRCS:%.c=$(OBJS_DIR)%.o)
@@ -28,7 +30,7 @@ $(LIBFT_NAME): FORCE
 $(NAME): Makefile $(OBJS) $(LIBFT_NAME)
 	@$(MAKE) -C $(LIBFT_DIR) --no-print-directory
 	@$(CC) $(FLAGS) $(OBJS) -L$(LIBFT_DIR) $(LIBFT_NAME) -o $(NAME)
-	@echo "$(GREEN)$(BOLD)\n🎉 Compilation successful!$(RESET)"
+	@echo "$(GREEN)$(BOLD)\nCompilation successful!$(RESET)"
 	@echo "$(CYAN)  └─ Ready to run: ./$(NAME)\n$(RESET)"
 
 $(OBJS_DIR)%.o: %.c $(HEADER) Makefile $(LIBFT_NAME)
@@ -40,7 +42,7 @@ $(OBJS_DIR)%.o: %.c $(HEADER) Makefile $(LIBFT_NAME)
 clean:
 	@rm -rf $(OBJS_DIR) $(OBJS)
 	@$(MAKE) clean -C $(LIBFT_DIR)
-	@echo "$(RED)$(BOLD)\n🧹 Cleaning up project files...$(RESET)"
+	@echo "$(RED)$(BOLD)\nCleaning up project files...$(RESET)"
 	@echo "$(YELLOW)  ├─ Removing object files$(RESET)"
 	@echo "$(YELLOW)  └─ Cleaning libft$(RESET)"
 
@@ -48,11 +50,10 @@ clean:
 fclean: clean
 	@$(MAKE) fclean -C $(LIBFT_DIR) --no-print-directory
 	@$(RM) $(NAME)
-	@echo "$(RED)$(BOLD)\n🗑️  Full clean-up completed:$(RESET)"
+	@echo "$(RED)$(BOLD)\nFull clean-up completed:$(RESET)"
 	@echo "$(YELLOW)  ├─ Removed object files and directories$(RESET)"
 	@echo "$(YELLOW)  ├─ Cleaned libft$(RESET)"
-	@echo "$(YELLOW)  └─ Deleted executable: $(NAME)$(RESET)"
-	@echo "$(GREEN)$(BOLD)\n🌿 Back to its original state!$(RESET)\n"
+	@echo "$(YELLOW)  └─ Deleted executable: $(NAME)\n$(RESET)"
 
 .PHONY: re
 re: fclean all

@@ -37,18 +37,56 @@ int main(int ac, char **av)
 {
 	t_stack *a;
 	t_stack *b;
-	int		len;
+	size_t	len;
+	int		*args;
+	int		*index_arr;
 
+	(void)av;
 	a = NULL;
 	b = NULL;
-	if (ac < 2)
+	if (ac == 1)
+		return (0);
+	if (ac == 2)
 	{
-		ft_printf(RED"Error: Need arg\n"RESET);
+		write(2, "Error\n", 6);
+		ft_printf("Need at least 2 numbers\n");
+		return (0);
 	}
-	len = 0;
-	while (av[len])
-		len++;
+	len = ac - 1;
+	if (!check_letter_plus(av, len) || !check_format(av, len))
+		return (0);
+	args = stock_arg_array(av, len);
+	if (!args)
+		{
+			write(2, "Error\n", 6);
+			ft_printf("Maloc failed\n");
+			return (0);
+		}
+	if (!check_duplicate(args, len))
+	{
+		free(args);
+		return (0);
+	}
+	index_arr = modify_value(args, len);
 
+		/* PRINT ARG ARRAY */
+		size_t i = 0;
+		ft_printf("ARGS_LIST\n");
+		while (i != len)
+		{
+			ft_printf("[%d] = %d\n", i, args[i]);
+			i++;
+		}
+
+		/* PRINT ARG_INDEX ARRAY */
+		size_t j = 0;
+		ft_printf("\nARGS_INDEX\n");
+		while (j != len)
+		{
+			ft_printf("[%d] = %d\n", j, index_arr[j]);
+			j++;
+		}
+		ft_printf("\n");
 
 
     add_node_list(&a, 1);
@@ -149,6 +187,7 @@ int main(int ac, char **av)
 
 	free_stack(&a);
 	free_stack(&b);
+	free(args);
 	return (0);
 
 }

@@ -15,6 +15,8 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
+# ifndef INT_MIN
+# endif
 # ifndef FD_MAX
 #  define FD_MAX 1024
 # endif
@@ -24,7 +26,7 @@
 # include <unistd.h>
 # include <stdarg.h>
 
-// Libft
+/* LIBFT */
 int		ft_isspace(char c);
 double	ft_atof(char *str);
 int		ft_atoi(const char *nptr);
@@ -64,7 +66,7 @@ char	*ft_strrchr(const char *str, int c);
 char	*ft_strtrim(const char *s1, const char *set);
 char	*ft_substr(const char *s, unsigned int start, size_t len);
 
-// ft_printf
+/* PRINTF */
 int		ft_printf(const char *format, ...);
 int		base_len(char *base);
 int		ft_putchar(char c, int fd);
@@ -77,7 +79,7 @@ int		ft_putnbr_base_ul(unsigned long long nbr, char *base);
 
 int		ft_putnbr_float(double n, int precision, int fd);
 
-// Get_Next_Line
+/* GNL */
 char	*get_next_line(int fd);
 
 #endif

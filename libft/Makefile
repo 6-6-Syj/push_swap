@@ -68,7 +68,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS) Makefile
 	@$(AR) $(ARFLAGS) $(NAME) $(OBJS)
-	@echo "$(GREEN)$(BOLD)\n📚 Library created successfully!$(RESET)"
+	@echo "$(GREEN)$(BOLD)\nLibrary created successfully!$(RESET)"
 	@echo "$(CYAN)  ├─ Library name: $(NAME)$(RESET)"
 	@echo "$(CYAN)  └─ Total objects: $(words $(OBJS))\n$(RESET)"
 

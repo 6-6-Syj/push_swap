@@ -22,6 +22,10 @@
 #define BLUE    "\033[34m"
 #define MAGENTA "\033[35m"
 #define CYAN    "\033[36m"
+#  define INT_MIN -2147483648
+# endif
+# ifndef INT_MAX
+#  define INT_MAX 2147483647
 
 typedef struct s_stack
 {
@@ -30,35 +34,42 @@ typedef struct s_stack
 	int				value;
 }	t_stack;
 
-//	nodes.c
+/* nodes.c */
 t_stack	*add_new_node(int value);
 void	add_node_list(t_stack **head, int value);
 
-// debug.c
+/* debug.c */
 int 	display_list(t_stack *head);
 
-//	swap.c
+//	/* swap.c */
 int		swap_a(t_stack **a);
 int		swap_b(t_stack **b);
 int		swap_ab(t_stack **a, t_stack **b);
 
-// push.c
+/* push.c */
 int		push_a(t_stack **a, t_stack **b);
 int		push_b(t_stack **a, t_stack **b);
 
-// rotate.c
+/* rotate.c */
 int		rotate_a(t_stack **a);
 int		rotate_b(t_stack **b);
 int		rotate_ab(t_stack **a, t_stack **b);
 
-// reverse_rotate.c
+/* reverse_rotate.c */
 int		reverse_rotate_a(t_stack **a);
 int		reverse_rotate_b(t_stack **b);
 int		reverse_rotate_ab(t_stack **a, t_stack **b);
 
-// value_to_index.c
+/* value_to_index.c */
 int		*modify_value(int *arr, size_t len);
 
-//
+/* args.c */
+int		check_letter_plus(char **av, size_t len);
+int		check_format(char **av, size_t len);
+int		*stock_arg_array(char **av, size_t len);
+int		check_duplicate(int *int_arr, size_t len);
+
+/* args_utils.c */
+int		atoi_push_swap(const char *nptr, int *error);
 
 #endif
