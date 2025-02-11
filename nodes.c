@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-t_stack	*add_new_node(int value)
+static t_stack	*add_new_node(int value)
 {
 	t_stack	*tmp;
 

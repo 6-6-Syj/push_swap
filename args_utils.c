@@ -63,3 +63,50 @@ int	atoi_push_swap(const char *nptr, int *error)
 	}
 	return ((int)(nb * sign));
 }
+
+int	*rev_arr(int *arr, size_t len)
+{
+	size_t	start;
+	size_t	end;
+	int		tmp;
+
+	start = 0;
+	end = len - 1;
+	if (!arr)
+		return (NULL);
+	while (start < end)
+	{
+		tmp = arr[start];
+		arr[start] = arr[end];
+		arr[end] = tmp;
+		start++;
+		end--;
+	}
+	return (arr);
+}
+
+int	*stock_arg_array(char **av, size_t len)
+{
+	int		*arr;
+	size_t	i;
+	int		error;
+
+	i = 0;
+	arr = malloc(sizeof(int) * len);
+	if (!arr)
+		return (NULL);
+	while (i < len)
+	{
+		error = 0;
+		arr[i] = atoi_push_swap(av[i + 1], &error);
+		if (error)
+		{
+			free(arr);
+			write(2, "Error\n", 6);
+			ft_printf("An argument is not an INT\n");
+			return (NULL);
+		}
+		i++;
+	}
+	return (arr);
+}

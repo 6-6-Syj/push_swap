@@ -64,6 +64,30 @@ int	check_format(char **av, size_t len)
 	return (1);
 }
 
+int	check_format_2(char **av, size_t len)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 1;
+	while (i <= len)
+	{
+		j = 0;
+		while (av[i][j] != '\0')
+		{
+			if ((av[i][j] < 48 && av[i][j] != '-') || av[i][j] > 57)
+			{
+				write(2, "Error\n", 6);
+				ft_printf("Argument [%d] is incorrect\n", i);
+				return (0);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
 int	check_duplicate(int *int_arr, size_t len)
 {
 	size_t	i;
@@ -86,30 +110,4 @@ int	check_duplicate(int *int_arr, size_t len)
 		i++;
 	}
 	return (1);
-}
-
-int	*stock_arg_array(char **av, size_t len)
-{
-	int		*arr;
-	size_t	i;
-	int		error;
-
-	i = 0;
-	arr = malloc(sizeof(int) * len);
-	if (!arr)
-		return (NULL);
-	while (i < len)
-	{
-		error = 0;
-		arr[i] = atoi_push_swap(av[i + 1], &error);
-		if (error)
-		{
-			free(arr);
-			write(2, "Error\n", 6);
-			ft_printf("An argument is not an INT\n");
-			return (NULL);
-		}
-		i++;
-	}
-	return (arr);
 }

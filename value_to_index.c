@@ -43,7 +43,7 @@ static int	*get_index(int *arr, int *sorted_arr, size_t len)
 	size_t	i;
 	size_t	j;
 
-	index = malloc(sizeof(int) * len + 1);
+	index = malloc(sizeof(int) * len);
 	if (!index)
 		return (NULL);
 	i = 0;
@@ -67,6 +67,7 @@ static int	*get_index(int *arr, int *sorted_arr, size_t len)
 int		*modify_value(int *arr, size_t len)
 {
 	int		*tmp_arr;
+	int		*sorted_tmp_arr;
 	int		*index;
 	size_t	i;
 
@@ -79,15 +80,10 @@ int		*modify_value(int *arr, size_t len)
 		tmp_arr[i] = arr[i];
 		i++;
 	}
-	tmp_arr = sort_arr(tmp_arr, len);
-	index = get_index(arr, tmp_arr, len);
+	sorted_tmp_arr = sort_arr(tmp_arr, len);
+	index = get_index(arr, sorted_tmp_arr, len);
 	free(tmp_arr);
-	i = 0;
-	while (i < len)
-	{
-		arr[i] = index[i];
-		i++;
-	}
-	free(index);
-	return (arr);
+	if (!index)
+        return (NULL);
+	return (index);
 }

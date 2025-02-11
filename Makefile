@@ -17,6 +17,7 @@ SRCS =	main.c				\
 		value_to_index.c	\
 		args.c				\
 		args_utils.c		\
+		solution.c			\
 
 OBJS_DIR = obj/
 OBJS = $(SRCS:%.c=$(OBJS_DIR)%.o)

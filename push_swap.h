@@ -12,6 +12,10 @@
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+#  define INT_MIN -2147483648
+# endif
+# ifndef INT_MAX
+#  define INT_MAX 2147483647
 
 # include "libft/libft.h"
 
@@ -22,10 +26,7 @@
 #define BLUE    "\033[34m"
 #define MAGENTA "\033[35m"
 #define CYAN    "\033[36m"
-#  define INT_MIN -2147483648
-# endif
-# ifndef INT_MAX
-#  define INT_MAX 2147483647
+
 
 typedef struct s_stack
 {
@@ -35,7 +36,6 @@ typedef struct s_stack
 }	t_stack;
 
 /* nodes.c */
-t_stack	*add_new_node(int value);
 void	add_node_list(t_stack **head, int value);
 
 /* debug.c */
@@ -66,10 +66,12 @@ int		*modify_value(int *arr, size_t len);
 /* args.c */
 int		check_letter_plus(char **av, size_t len);
 int		check_format(char **av, size_t len);
-int		*stock_arg_array(char **av, size_t len);
+int		check_format_2(char **av, size_t len);
 int		check_duplicate(int *int_arr, size_t len);
 
 /* args_utils.c */
 int		atoi_push_swap(const char *nptr, int *error);
+int		*stock_arg_array(char **av, size_t len);
+int		*rev_arr(int *arr, size_t len);
 
 #endif
