@@ -74,4 +74,8 @@ int		atoi_push_swap(const char *nptr, int *error);
 int		*stock_arg_array(char **av, size_t len);
 int		*rev_arr(int *arr, size_t len);
 
+/* solution.c */
+int		algo_3(t_stack **a);
+int		algo_5(t_stack **a, t_stack **b, size_t len);
+
 #endif

@@ -17,58 +17,28 @@
 
 int swap_a(t_stack **a)
 {
-    t_stack *first;
-    t_stack *second;
+	int	tmp;
 
-    if (!(*a) || (*a)->next == *a)
+	tmp = 0;
+	if (!(*a) || (*a)->next == *a)
         return (0);
-    first = *a;
-    second = (*a)->next;
-    if (first->next == second && second->next == first)
-    {
-        *a = second;
-        first->next = second;
-        first->prev = second;
-        second->next = first;
-        second->prev = first;
-        return (1);
-    }
-    *a = second;
-    first->next = second->next;
-    second->next->prev = first;
-    second->next = first;
-    first->prev = second;
-    second->prev = first->prev;
-    first->prev->next = second;
-    return (1);
+	tmp = (*a)->value;
+	(*a)->value = (*a)->next->value;
+	(*a)->next->value = tmp;
+	return (1);
 }
 
 int swap_b(t_stack **b)
 {
-    t_stack *first;
-    t_stack *second;
+	int	tmp;
 
-    if (!(*b) || (*b)->next == *b)
+	tmp = 0;
+	if (!(*b) || (*b)->next == *b)
         return (0);
-    first = *b;
-    second = (*b)->next;
-    if (first->next == second && second->next == first)
-    {
-        *b = second;
-        first->next = second;
-        first->prev = second;
-        second->next = first;
-        second->prev = first;
-        return (1);
-    }
-    *b = second;
-    first->next = second->next;
-    second->next->prev = first;
-    second->next = first;
-    first->prev = second;
-    second->prev = first->prev;
-    first->prev->next = second;
-    return (1);
+	tmp = (*b)->value;
+	(*b)->value = (*b)->next->value;
+	(*b)->next->value = tmp;
+	return (1);
 }
 
 int	swap_ab(t_stack **a, t_stack **b)
