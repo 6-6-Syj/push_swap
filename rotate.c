@@ -20,6 +20,7 @@ int	rotate_a(t_stack **a)
 	if (!(*a) || (*a)->next == *a)
 		return (0);
 	*a = (*a)->next;
+	ft_printf("ra\n");
 	return (1);
 }
 
@@ -28,12 +29,13 @@ int	rotate_b(t_stack **b)
 	if (!(*b) || (*b)->next == *b)
 		return (0);
 	*b = (*b)->next;
+	ft_printf("rb\n");
 	return (1);
 }
 
-int	rotate_ab(t_stack **a, t_stack **b)
-{
-	rotate_a(a);
-	rotate_b(b);
-	return (1);
-}
+// int	rotate_ab(t_stack **a, t_stack **b)
+// {
+// 	rotate_a(a);
+// 	rotate_b(b);
+// 	return (1);
+// }

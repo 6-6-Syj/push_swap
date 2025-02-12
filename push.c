@@ -67,6 +67,7 @@ int		push_a(t_stack **a, t_stack **b)
 		tmp_b->prev->next = *b;
 	}
 	push_to_a(a, tmp_b);
+	ft_printf("pa\n");
 	return (1);
 }
 
@@ -86,5 +87,6 @@ int		push_b(t_stack **a, t_stack **b)
 		tmp_a->prev->next = *a;
 	}
 	push_to_b(b, tmp_a);
+	ft_printf("pb\n");
 	return (1);
 }

@@ -25,6 +25,7 @@ int swap_a(t_stack **a)
 	tmp = (*a)->value;
 	(*a)->value = (*a)->next->value;
 	(*a)->next->value = tmp;
+	ft_printf("sa\n");
 	return (1);
 }
 
@@ -38,12 +39,13 @@ int swap_b(t_stack **b)
 	tmp = (*b)->value;
 	(*b)->value = (*b)->next->value;
 	(*b)->next->value = tmp;
+	ft_printf("sb\n");
 	return (1);
 }
 
-int	swap_ab(t_stack **a, t_stack **b)
-{
-	swap_a(a);
-	swap_b(b);
-	return (1);
-}
+// int	swap_ab(t_stack **a, t_stack **b)
+// {
+// 	swap_a(a);
+// 	swap_b(b);
+// 	return (1);
+// }

@@ -111,7 +111,6 @@ int algo_5(t_stack **a, t_stack **b, size_t len)
 		}
 		push_b(a, b);
 		i++;
-		len--;
 	}
 	while (*b)
 		push_a(a, b);
