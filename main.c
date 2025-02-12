@@ -96,7 +96,7 @@ int main(int ac, char **av)
 		add_node_list(&a, args[i]);
 		i++;
 	}
-	display_list(a);
+	// display_list(a);
 
 	if (len == 3)
 	{
@@ -107,7 +107,7 @@ int main(int ac, char **av)
 	else if (len == 5)
 	{
 		algo_5(&a, &b, len);
-		display_list(a);
+		// display_list(a);
 		return (1);
 	}
 	else

@@ -98,8 +98,8 @@ int algo_5(t_stack **a, t_stack **b, size_t len)
 
 	if (!a || !*a)
 		return (0);
-	i = 0;
-	while (i < len - 1)
+	i = 5;
+	while (i > 3)
 	{
 		min = find_min(*a);
 		while ((*a)->value != min)
@@ -110,8 +110,9 @@ int algo_5(t_stack **a, t_stack **b, size_t len)
 				reverse_rotate_a(a);
 		}
 		push_b(a, b);
-		i++;
+		i--;
 	}
+	algo_3(a);
 	while (*b)
 		push_a(a, b);
 	if (is_sort(a))
