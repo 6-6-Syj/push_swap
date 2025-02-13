@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static int	is_sort(int *arr, size_t len)
+static int	is_sort_array(int *arr, size_t len)
 {
 	size_t	i;
 
@@ -23,7 +23,6 @@ static int	is_sort(int *arr, size_t len)
 			return (0);
 		i++;
 	}
-	ft_printf("ALREADY SORTED");
 	return (1);
 }
 
@@ -48,15 +47,8 @@ static void	free_stack(t_stack **stack)
 	*stack = NULL;
 }
 
-int	main(int ac, char **av)
+static int	arg_check(int ac, char **av, size_t len)
 {
-	t_stack	*a;
-	t_stack	*b;
-	size_t	len;
-	int		*args;
-
-	a = NULL;
-	b = NULL;
 	if (ac == 1)
 		return (0);
 	if (ac == 2)
@@ -65,11 +57,14 @@ int	main(int ac, char **av)
 		ft_printf("Need at least 2 numbers\n");
 		return (0);
 	}
-	len = ac - 1;
 	if (!check_letter_plus(av, len) || !check_format(av, len)
 		|| !check_format_2(av, len))
 		return (0);
-	args = stock_arg_array(av, len);
+	return (1);
+}
+
+int	arg_arr_checker(int *args, size_t len)
+{
 	if (!args)
 	{
 		write(2, "Error\n", 6);
@@ -81,14 +76,32 @@ int	main(int ac, char **av)
 		free(args);
 		return (0);
 	}
-	if (is_sort(args, len))
+	if (is_sort_array(args, len))
 		return (0);
-	/* IF ALGO 3 OR 5 */
-	choose_algo(a, b, len, args);
-	// display_list(a);
+	return (1);
+}
 
+int	main(int ac, char **av)
+{
+	t_stack	*a;
+	t_stack	*b;
+	int		*args;
+	int		*index_arr;
+	size_t	len;
+
+	a = NULL;
+	b = NULL;
+	len = ac - 1;
+	if (!arg_check(ac, av, len))
+		return (0);
+	args = stock_arg_array(av, len);
+	if (!arg_arr_checker(args, len))
+		return (0);
+	index_arr = modify_value(args, len);
+	choose_algo(a, b, len, index_arr);
 	free_stack(&a);
 	free_stack(&b);
 	free(args);
+	free(index_arr);
 	return (0);
 }

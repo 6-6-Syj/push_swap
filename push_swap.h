@@ -63,26 +63,22 @@ int					reverse_rotate_b(t_stack **b);
 /* value_to_index.c */
 int					*modify_value(int *arr, size_t len);
 
-/* args.c */
+/* check_args.c */
 int					check_letter_plus(char **av, size_t len);
 int					check_format(char **av, size_t len);
 int					check_format_2(char **av, size_t len);
 int					check_duplicate(int *int_arr, size_t len);
 
-/* args_utils.c */
+/* handle_args.c */
 int					atoi_push_swap(const char *nptr, int *error);
 int					*stock_arg_array(char **av, size_t len);
 int					*rev_arr(int *arr, size_t len);
 
-/* solution.c */
-int					algo_3(t_stack **a);
-int					algo_5(t_stack **a, t_stack **b, size_t len);
+/* sort_simple.c */
+int					is_sort(t_stack **a);
+int					choose_algo(t_stack *a, t_stack *b, size_t len, int *args);
 
-/* solution_utils.c */
-int					choose_algo(t_stack *a, t_stack *b, size_t len,
-						int *args);
-
-/* radix */
-int					algo_radix(t_stack **a, t_stack **b);
+/* sort_radix */
+void				radix_sort(t_stack **a, t_stack **b);
 
 #endif

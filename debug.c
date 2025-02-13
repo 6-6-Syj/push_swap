@@ -64,7 +64,7 @@ int	display_list(t_stack *head)
 {
 	t_stack	*tmp;
 	int		total_nodes;
-	int	i;
+	int		i;
 
 	total_nodes = count_and_display_header(head);
 	if (total_nodes == 0)

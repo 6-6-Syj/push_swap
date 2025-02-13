@@ -15,11 +15,10 @@ SRCS =	main.c				\
 		rotate.c			\
 		reverse_rotate.c	\
 		value_to_index.c	\
-		args.c				\
-		args_utils.c		\
-		solution.c			\
-		solution_utils.c	\
-		radix.c				\
+		check_args.c		\
+		handle_args.c		\
+		sort_simple.c		\
+		sort_radix.c		\
 
 OBJS_DIR = obj/
 OBJS = $(SRCS:%.c=$(OBJS_DIR)%.o)
@@ -61,7 +60,8 @@ fclean: clean
 .PHONY: re
 re: fclean all
 
-# ************************* COLORS ************************* #
+# **** COLORS **** #
+
 BLACK = \033[30m
 RED = \033[31m
 GREEN = \033[32m
