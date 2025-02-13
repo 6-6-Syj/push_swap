@@ -78,7 +78,7 @@ static int	sort_five(t_stack **a, t_stack **b, size_t len)
 	return (0);
 }
 
-static void	sort_three_or_five(t_stack **a, t_stack **b, int *args, size_t len)
+void	sort_three_or_five(t_stack **a, t_stack **b, int *args, size_t len)
 {
 	size_t	i;
 
@@ -95,33 +95,8 @@ static void	sort_three_or_five(t_stack **a, t_stack **b, int *args, size_t len)
 		sort_three(a);
 	else if (!is_sort(a) && len <= 5)
 		sort_five(a, b, len);
-}
-
-int	choose_algo(t_stack *a, t_stack *b, size_t len, int *args)
-{
-	int		*index_arr;
-	size_t	i;
-
-	i = 0;
-	if (len <= 5)
-	{
-		sort_three_or_five(&a, &b, args, len);
-		return (1);
-	}
-	else if (!is_sort(&a))
-	{
-		index_arr = modify_value(args, len);
-		while (i < len)
-		{
-			add_node_list(&a, args[i]);
-			i++;
-		}
-		radix_sort(&a, &b);
-	}
-	else
-	{
-		free(a);
-		free(b);
-	}
-	return (0);
+	if (a)
+		free_stack(a);
+	if (b)
+		free_stack(b);
 }

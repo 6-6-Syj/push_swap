@@ -66,3 +66,43 @@ void	radix_sort(t_stack **a, t_stack **b)
 		i++;
 	}
 }
+
+void free_all(t_stack **a, t_stack **b, int *index_arr, int *args)
+{
+	if (a)
+		free_stack(a);
+	if (b)
+		free_stack(b);
+	if (index_arr)
+		free(index_arr);
+	if (args)
+		free(args);
+}
+
+int	choose_algo(t_stack *a, t_stack *b, size_t len, int *args)
+{
+	int		*index_arr;
+	size_t	i;
+
+	i = 0;
+	index_arr = NULL;
+	if (len <= 5)
+	{
+		sort_three_or_five(&a, &b, args, len);
+		free_all(&a, &b, index_arr, args);
+		return (1);
+	}
+	else if (!is_sort(&a))
+	{
+		index_arr = modify_value(args, len);
+		while (i < len)
+		{
+			add_node_list(&a, args[i]);
+			i++;
+		}
+		radix_sort(&a, &b);
+	}
+	if (index_arr)
+		free_all(&a, &b, index_arr, args);
+	return (0);
+}

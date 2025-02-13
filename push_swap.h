@@ -38,6 +38,9 @@ typedef struct s_stack
 	int				value;
 }					t_stack;
 
+/* main.c */
+void				free_stack(t_stack **stack);
+
 /* nodes.c */
 void				add_node_list(t_stack **head, int value);
 
@@ -76,9 +79,13 @@ int					*rev_arr(int *arr, size_t len);
 
 /* sort_simple.c */
 int					is_sort(t_stack **a);
+void				sort_three_or_five(t_stack **a, t_stack **b, int *args,
+						size_t len);
 int					choose_algo(t_stack *a, t_stack *b, size_t len, int *args);
 
 /* sort_radix */
 void				radix_sort(t_stack **a, t_stack **b);
+void				free_all(t_stack **a, t_stack **b, int *index_arr,
+						int *args);
 
 #endif

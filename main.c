@@ -26,7 +26,7 @@ static int	is_sort_array(int *arr, size_t len)
 	return (1);
 }
 
-static void	free_stack(t_stack **stack)
+void	free_stack(t_stack **stack)
 {
 	t_stack	*start;
 	t_stack	*current;
@@ -95,13 +95,14 @@ int	main(int ac, char **av)
 	if (!arg_check(ac, av, len))
 		return (0);
 	args = stock_arg_array(av, len);
+	if (!args)
+		return (0);
 	if (!arg_arr_checker(args, len))
 		return (0);
 	index_arr = modify_value(args, len);
-	choose_algo(a, b, len, index_arr);
-	free_stack(&a);
-	free_stack(&b);
 	free(args);
-	free(index_arr);
+	if (!index_arr)
+		return (0);
+	choose_algo(a, b, len, index_arr);
 	return (0);
 }
