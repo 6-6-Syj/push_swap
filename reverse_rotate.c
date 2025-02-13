@@ -18,7 +18,7 @@
 int	reverse_rotate_a(t_stack **a)
 {
 	if (!(*a) || (*a)->next == *a)
-	return (0);
+		return (0);
 	*a = (*a)->prev;
 	ft_printf("rra\n");
 	return (1);
@@ -27,15 +27,8 @@ int	reverse_rotate_a(t_stack **a)
 int	reverse_rotate_b(t_stack **b)
 {
 	if (!(*b) || (*b)->next == *b)
-	return (0);
+		return (0);
 	*b = (*b)->prev;
 	ft_printf("rrb\n");
 	return (1);
 }
-
-// int	reverse_rotate_ab(t_stack **a, t_stack **b)
-// {
-// 	reverse_rotate_a(a);
-// 	reverse_rotate_b(b);
-// 	return (1);
-// }

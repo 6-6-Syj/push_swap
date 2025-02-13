@@ -37,31 +37,31 @@ int	algo_3(t_stack **a)
 
 	next = (*a)->next;
 	end = (*a)->prev;
-	if ((*a)->value < end->value && next->value < end->value) /* 2 1 3 */
+	if ((*a)->value < end->value && next->value < end->value)
 		swap_a(a);
-	else if ((*a)->value > next->value && next->value > end->value) /* 3 2 1 */
+	else if ((*a)->value > next->value && next->value > end->value)
 	{
 		rotate_a(a);
 		swap_a(a);
 	}
-	else if ((*a)->value < next->value && (*a)->value < end->value) /* 1 3 2 */
+	else if ((*a)->value < next->value && (*a)->value < end->value)
 	{
 		reverse_rotate_a(a);
 		swap_a(a);
 	}
-	else if ((*a)->value < next->value && (*a)->value > end->value) /* 2 3 1 */
+	else if ((*a)->value < next->value && (*a)->value > end->value)
 		reverse_rotate_a(a);
-	else if ((*a)->value > next->value && next->value < end->value) /* 3 1 2 */
+	else if ((*a)->value > next->value && next->value < end->value)
 		rotate_a(a);
-	if(is_sort(a))
+	if (is_sort(a))
 		return (1);
 	return (0);
 }
 
-static int find_min(t_stack *a)
+static int	find_min(t_stack *a)
 {
-	int     min;
-	t_stack *current;
+	int		min;
+	t_stack	*current;
 
 	if (!a)
 		return (0);
@@ -76,10 +76,10 @@ static int find_min(t_stack *a)
 	return (min);
 }
 
-static size_t get_position(t_stack **a, int value)
+static size_t	get_position(t_stack **a, int value)
 {
-	size_t  pos;
-	t_stack *current;
+	size_t	pos;
+	t_stack	*current;
 
 	pos = 0;
 	current = *a;
@@ -91,10 +91,10 @@ static size_t get_position(t_stack **a, int value)
 	return (pos);
 }
 
-int algo_5(t_stack **a, t_stack **b, size_t len)
+int	algo_5(t_stack **a, t_stack **b, size_t len)
 {
-    size_t  i;
-    int     min;
+	size_t	i;
+	int		min;
 
 	if (!a || !*a)
 		return (0);
@@ -119,8 +119,3 @@ int algo_5(t_stack **a, t_stack **b, size_t len)
 		return (1);
 	return (0);
 }
-
-// void	algo_radix(t_stack **a, t_stack **b)
-// {
-
-// }

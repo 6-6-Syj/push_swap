@@ -24,14 +24,14 @@ int	check_letter_plus(char **av, size_t len)
 		while (av[i][j] != '\0')
 		{
 			if (ft_isalpha(av[i][j]) || av[i][j] == '+')
-				{
-					write(2, "Error\n", 6);
-					if (ft_isalpha(av[i][j]))
-						ft_printf("Argument %d is incorrect: LETTER\n", i);
-					else
-						ft_printf("Argument [%d] is incorrect: '+'\n", i);
-					return (0);
-				}
+			{
+				write(2, "Error\n", 6);
+				if (ft_isalpha(av[i][j]))
+					ft_printf("Argument %d is incorrect: LETTER\n", i);
+				else
+					ft_printf("Argument [%d] is incorrect: '+'\n", i);
+				return (0);
+			}
 			j++;
 		}
 		i++;

@@ -14,7 +14,7 @@
 
 static int	get_sign(const char **str)
 {
-	int sign;
+	int	sign;
 
 	sign = 1;
 	if (**str == '-' || **str == '+')
@@ -29,10 +29,10 @@ static int	get_sign(const char **str)
 static int	check_overflow(long nb, int digit, int sign)
 {
 	if (sign == 1 && (nb > INT_MAX / 10
-		|| (nb == INT_MAX / 10 && digit > INT_MAX % 10)))
+			|| (nb == INT_MAX / 10 && digit > INT_MAX % 10)))
 		return (1);
 	if (sign == -1 && (nb > -(long)INT_MIN / 10
-		|| (nb == -(long)INT_MIN / 10 && digit > -(INT_MIN % 10))))
+			|| (nb == -(long)INT_MIN / 10 && digit > -(INT_MIN % 10))))
 		return (1);
 	return (0);
 }

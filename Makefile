@@ -4,7 +4,7 @@ LIBFT_DIR = libft/
 LIBFT_NAME = $(LIBFT_DIR)libft.a
 HEADER = $(LIBFT_DIR)libft.h
 
-CC = cc
+CC = cc -g3
 FLAGS = -Wall -Werror -Wextra
 
 SRCS =	main.c				\
@@ -18,6 +18,8 @@ SRCS =	main.c				\
 		args.c				\
 		args_utils.c		\
 		solution.c			\
+		solution_utils.c	\
+		radix.c				\
 
 OBJS_DIR = obj/
 OBJS = $(SRCS:%.c=$(OBJS_DIR)%.o)

@@ -32,7 +32,7 @@ static int	*sort_arr(int *arr, size_t len)
 			}
 			j++;
 		}
-	i++;
+		i++;
 	}
 	return (arr);
 }
@@ -64,7 +64,7 @@ static int	*get_index(int *arr, int *sorted_arr, size_t len)
 	return (index);
 }
 
-int		*modify_value(int *arr, size_t len)
+int	*modify_value(int *arr, size_t len)
 {
 	int		*tmp_arr;
 	int		*sorted_tmp_arr;
@@ -84,6 +84,6 @@ int		*modify_value(int *arr, size_t len)
 	index = get_index(arr, sorted_tmp_arr, len);
 	free(tmp_arr);
 	if (!index)
-        return (NULL);
+		return (NULL);
 	return (index);
 }

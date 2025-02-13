@@ -32,10 +32,3 @@ int	rotate_b(t_stack **b)
 	ft_printf("rb\n");
 	return (1);
 }
-
-// int	rotate_ab(t_stack **a, t_stack **b)
-// {
-// 	rotate_a(a);
-// 	rotate_b(b);
-// 	return (1);
-// }

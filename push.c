@@ -33,6 +33,26 @@ static void	push_to_a(t_stack **a, t_stack *tmp_b)
 	}
 }
 
+int	push_a(t_stack **a, t_stack **b)
+{
+	t_stack	*tmp_b;
+
+	if (!(*b))
+		return (0);
+	tmp_b = *b;
+	if ((*b)->next == *b)
+		*b = NULL;
+	else
+	{
+		*b = (*b)->next;
+		(*b)->prev = tmp_b->prev;
+		tmp_b->prev->next = *b;
+	}
+	push_to_a(a, tmp_b);
+	ft_printf("pa\n");
+	return (1);
+}
+
 static void	push_to_b(t_stack **b, t_stack *tmp_a)
 {
 	if (!(*b))
@@ -51,32 +71,12 @@ static void	push_to_b(t_stack **b, t_stack *tmp_a)
 	}
 }
 
-int		push_a(t_stack **a, t_stack **b)
-{
-	t_stack	*tmp_b;
-
-	if (!(*b))
-        return (0);
-	tmp_b = *b;
-	if ((*b)->next == *b)
-		*b = NULL;
-	else
-	{
-		*b = (*b)->next;
-		(*b)->prev = tmp_b->prev;
-		tmp_b->prev->next = *b;
-	}
-	push_to_a(a, tmp_b);
-	ft_printf("pa\n");
-	return (1);
-}
-
-int		push_b(t_stack **a, t_stack **b)
+int	push_b(t_stack **a, t_stack **b)
 {
 	t_stack	*tmp_a;
 
 	if (!(*a))
-        return (0);
+		return (0);
 	tmp_a = *a;
 	if ((*a)->next == *a)
 		*a = NULL;
