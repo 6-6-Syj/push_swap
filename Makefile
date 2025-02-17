@@ -1,11 +1,11 @@
 NAME = push_swap
+HEADER = push_swap.h
 
 LIBFT_DIR = libft/
 LIBFT_NAME = $(LIBFT_DIR)libft.a
-HEADER = $(LIBFT_DIR)libft.h
 
-CC = cc -g3
-FLAGS = -Wall -Werror -Wextra
+CC = cc
+FLAGS = -Wall -Werror -Wextra -g3
 
 SRCS =	main.c				\
 		nodes.c				\
@@ -26,19 +26,18 @@ OBJS = $(SRCS:%.c=$(OBJS_DIR)%.o)
 .PHONY: all
 all: $(NAME)
 
-$(LIBFT_NAME):
-	@$(MAKE) -sC $(LIBFT_DIR)
-
-$(NAME): Makefile $(OBJS) $(LIBFT_NAME)
-	@$(MAKE) -sC $(LIBFT_DIR)
-	@$(CC) $(FLAGS) $(OBJS) -L$(LIBFT_DIR) $(LIBFT_NAME) -o $(NAME)
-	@echo "$(GREEN)$(BOLD)\nCompilation successful!$(RESET)"
-	@echo "$(CYAN)  └─ Ready to run: ./$(NAME)\n$(RESET)"
-
 $(OBJS_DIR)%.o: %.c $(HEADER) Makefile $(LIBFT_NAME)
 	@mkdir -p $(OBJS_DIR)
 	@echo "$(MAGENTA)$(BOLD)[Compiling...]$(RESET) $<"
 	@$(CC) $(FLAGS) -c $< -o $@
+
+$(LIBFT_NAME): force
+	@$(MAKE) -sC $(LIBFT_DIR)
+
+$(NAME): Makefile $(HEADER) $(OBJS) $(LIBFT_NAME)
+	@$(CC) $(FLAGS) $(OBJS) -L$(LIBFT_DIR) $(LIBFT_NAME) -o $(NAME)
+	@echo "$(GREEN)$(BOLD)\nCompilation successful!$(RESET)"
+	@echo "$(CYAN)  └─ Ready to run: ./$(NAME)\n$(RESET)"
 
 .PHONY: clean
 clean:
@@ -59,6 +58,10 @@ fclean: clean
 
 .PHONY: re
 re: fclean all
+
+.PHONY: force
+force:
+	@true
 
 # **** COLORS **** #
 
